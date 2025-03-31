@@ -1,38 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    public float speed;
-
-    private Vector2 _dir;
-    private Rigidbody2D _rb;
-
-    void Start()
-    {
-        _rb = GetComponent<Rigidbody2D>();
-
-    }
+    public float moveSpeed = 10f;
+    private float[] lanes = { -3f, 0f, 3f }; // 3 lanes
+    private int currentLane = 1; // Start in the middle lane
 
     void Update()
     {
-        _dir.x = Input.GetAxis("Horizontal");  
+        if (Input.GetKeyDown(KeyCode.A) && currentLane > 0)
+        {
+            currentLane--;
+        }
+        else if (Input.GetKeyDown(KeyCode.D) && currentLane < lanes.Length - 1)
+        {
+            currentLane++;
+        }
 
-        if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) {
-            GetComponent<SpriteRenderer>().transform.localScale = new Vector3( 1, 1);
-        } else if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)){
-            GetComponent<SpriteRenderer>().transform.localScale = new Vector3( -1, 1);
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if(_dir.x == 0) {
-            _rb.velocity = Vector2.zero;
-        }
-        else{
-            _rb.AddForce(_dir * speed);
-        }
+        // Move the player to the selected lane smoothly
+        Vector3 targetPosition = new Vector3(lanes[currentLane], transform.position.y, transform.position.z);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * moveSpeed);
     }
 }

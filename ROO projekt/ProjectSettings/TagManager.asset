@@ -41,12 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: MovingAssets
-    uniqueID: 2356235887
+  - name: Ground
+    uniqueID: 3989297823
     locked: 0
   - name: Obstacles
     uniqueID: 65845415
     locked: 0
-  - name: Ground
-    uniqueID: 3989297823
+  - name: MovingAssets
+    uniqueID: 2356235887
     locked: 0
