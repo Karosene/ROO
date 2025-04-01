@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -49,4 +51,7 @@ TagManager:
     locked: 0
   - name: MovingAssets
     uniqueID: 2356235887
+    locked: 0
+  - name: UI
+    uniqueID: 269821581
     locked: 0

@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class ObstacleScript : MonoBehaviour
 {
-    public float fallSpeed = 5f; // Speed of obstacles
+    public float fallSpeed = 4f; 
 
     void Update()
     {
         transform.position += Vector3.down * fallSpeed * Time.deltaTime;
 
-        // Destroy the obstacle when it goes out of view
-        if (transform.position.y < -6f)
+        if (transform.position.y < -8f)
         {
             Destroy(gameObject);
         }

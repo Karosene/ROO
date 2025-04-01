@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5665999545544263557}
   m_Layer: 0
   m_Name: DrugDealer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,8 +119,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.16, y: 0.16}
+  m_Offset: {x: 0.037909925, y: -0.000000059604645}
+  m_Size: {x: 0.59368956, y: 1.045576}
   m_Direction: 0
 --- !u!50 &1378060350668855252
 Rigidbody2D:
@@ -161,4 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e25282e68a4852840804beaebf971d56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  moveSpeed: 10
+  jumpingSprite: {fileID: 21300000, guid: c7ab351195831cf4a9f5982ff54dcdbf, type: 3}
+  gameOverUI: {fileID: 0}
