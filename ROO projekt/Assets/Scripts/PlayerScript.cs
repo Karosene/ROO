@@ -1,10 +1,13 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement; // Required for reloading the scene
-using TMPro; // Required for UI text (optional)
+using TMPro;
+using UnityEngine.Rendering.Universal.Internal; // Required for UI text (optional)
 
 public class PlayerScript : MonoBehaviour
 {
+    private MainManagerScript mainManager;
+
     public float moveSpeed = 10f;
     private float[] lanes = { -3f, 0f, 3f };
     private int currentLane = 1;
@@ -18,8 +21,6 @@ public class PlayerScript : MonoBehaviour
     private Sprite originalSprite;
     private SpriteRenderer spriteRenderer;
     
-    [SerializeField] private TMP_Text _text;
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -27,7 +28,14 @@ public class PlayerScript : MonoBehaviour
         playerCollider = GetComponent<Collider2D>();
         originalSprite = spriteRenderer.sprite;
 
-        Time.timeScale = 1; // Ensure time is normal when restarting
+        mainManager = FindObjectOfType<MainManagerScript>();
+
+        if (mainManager == null)
+        {
+            Debug.LogError("MainManagerScript not found in the scene!");
+        }
+
+        Time.timeScale = 1; 
     }
 
     void Update()
@@ -68,19 +76,8 @@ public class PlayerScript : MonoBehaviour
         isJumping = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Collision detected with: " + collision.gameObject.name);
-        if (collision.gameObject.CompareTag("Obstacle")) 
-        {
-            Debug.Log("Collided with an obstacle! Game Over.");
-            GameOver();
-        }
-    }
-
-    private void GameOver()
-    {
-        Debug.Log("Game Over!");
-        TimerScript.StopTimer();
+        mainManager.GameOver();
     }
 }
